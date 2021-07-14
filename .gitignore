@@ -1,2 +1,3 @@
 #removing dependencies
 /node_modules
+.idea
