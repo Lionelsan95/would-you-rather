@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {logInUser} from "../actions/authedUser";
+import {TITLE} from "../utils/_DATA";
+import icon from '../images/icon.png'
+import {Button, Card} from "react-bootstrap";
 
 class Authentication extends Component{
 
@@ -35,32 +38,38 @@ class Authentication extends Component{
         const {user} = this.state
 
         return (
-            <div className='authentication'>
+            <Card border='secondary' className='boxi contenu'>
+                <Card.Header>
+                    <Card.Title> Welcome to the {TITLE} App! </Card.Title>
+                    <Card.Text>Please sign in to continue</Card.Text>
+                </Card.Header>
 
-                <div className='authentication__header'>
-                    <h3> Would You Rather Game :-D </h3>
-                    <h5>Please sign in to continue</h5>
-                </div>
-
-                <img
-                    className='authentication__icon'
-                    alt='Icon'
-                />
-                <hr/>
-                <form className='authentication__signin' onSubmit={this.handleSubmit}>
-                    <select onChange={this.handleChange} value={user}>
-                        {
-                            Object.values(users).map(user => (
-                                <option key={user.id} value={user.id}>{user.name}</option>
-                            ))
-                        }
-                    </select>
+                <Card.Body>
+                    <Card.Img
+                        src={icon}
+                        className='authentication__icon'
+                        alt='Icon'
+                    />
                     <br/>
-                    <button>
-                        Sign In
-                    </button>
-                </form>
-            </div>
+                    <br/>
+                    <Card.Title>Sign in</Card.Title>
+                    <form className='authentication__signin' onSubmit={this.handleSubmit}>
+                        <select onChange={this.handleChange} value={user} className='form-select'>
+                            {
+                                Object.values(users).map(user => (
+                                    <option key={user.id} value={user.id}>
+                                        {user.name}
+                                    </option>
+                                ))
+                            }
+                        </select>
+                        <br/>
+                        <Button type='submit' variant='info' className='fit'>
+                            Sign In
+                        </Button>
+                    </form>
+                </Card.Body>
+            </Card>
         )
     }
 }

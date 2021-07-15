@@ -16,32 +16,34 @@ class Nav extends React.Component {
         return (
             <nav className='nav'>
                 <ul>
-                    <li>
+                    <li className='nav-link'>
                         <NavLink to='/' exact activeClassName='active'>
                             Home
                         </NavLink>
                     </li>
-                    { (user !== null && typeof user !== 'undefined') && <li>
+                    { (user !== null && typeof user !== 'undefined') && <li className='nav-link'>
                         <NavLink to='/add' exact activeClassName='active'>
                             New Question
                         </NavLink>
                     </li>
                     }
-                    <li>
+                    <li className='nav-link'>
                         <NavLink to='/leaderboard' exact activeClassName='active'>
                             Leader Board
                         </NavLink>
                     </li>
-                    { (user !== null && typeof user !== 'undefined') && <li>
+                    { (user !== null && typeof user !== 'undefined') &&
+                        <li>
                             <NavLink to='/new' activeClassName='active'>
                                 Hello {user.name}
                                 <img
+                                    src={user.avatarURL}
                                     alt='Avatar user'
                                 />
                             </NavLink>
                         </li>
                     }
-                    { (user !== null && typeof user !== 'undefined') && <li onClick={this.handleLogOut}>
+                    { (user !== null && typeof user !== 'undefined') && <li onClick={this.handleLogOut}  className='nav-link'>
                         <NavLink to='/' activeClassName='active'>
                             Log out
                         </NavLink>

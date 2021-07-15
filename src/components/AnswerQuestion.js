@@ -3,12 +3,13 @@ import {connect} from "react-redux";
 import {OPTION_ONE, OPTION_TWO, TITLE} from "../utils/_DATA";
 import {Redirect} from "react-router-dom";
 import {handleAnswerQuestion} from "../actions/questions";
+import {Button, Card} from "react-bootstrap";
 
 class AnswerQuestion extends React.Component{
 
     state = {
         choix: '',
-        goHome: false
+        showResult: false
     }
 
     handleSubmit = (e) => {
@@ -20,7 +21,7 @@ class AnswerQuestion extends React.Component{
         this.props.dispatch(handleAnswerQuestion(question.id, this.state.choix))
 
         this.setState(() => ({
-            goHome:true
+            showResult:true
         }))
     }
 
@@ -32,56 +33,67 @@ class AnswerQuestion extends React.Component{
 
     render() {
 
-        const {choix, goHome} = this.state
+        const {choix, showResult} = this.state
 
-        if(goHome || this.props.authedUser === null){
+        if(this.props.authedUser === null){
             return <Redirect to='/' />
         }
 
         const {user, question} = this.props
 
+        if(showResult === true){
+            return <Redirect to={`/questions/${question.id}`} />
+        }
+
         if( user === null || question === null){
             return (
                 <div>
-                    Loading hj ...
+                    Loading ...
                 </div>
             )
         }
 
         return(
-            <div>
-                <div className='__header'>
-                    {user.name} asks:
-                </div>
+            <Card className='contenu'>
+                <Card.Header>
+                    <Card.Title>
+                        {user.name} asks:
+                    </Card.Title>
+                </Card.Header>
 
-                <div className='__content'>
+                <Card.Body className='question-content'>
+                    <div>
+                        <img alt='avatar user' />
+                    </div>
 
-                    <h4> {TITLE} ...</h4>
+                    <div>
+                        <h4> {TITLE} ...</h4>
+                        <form onSubmit={this.handleSubmit}>
 
-                    <form onSubmit={this.handleSubmit}>
-                        <div className='radio'>
-                            <label>
-                                <input type='radio' value={OPTION_ONE} name='question' onChange={this.handleChoice}/>
-                                {question.optionOne.text}
-                            </label>
-                        </div>
+                            <div className='form-check'>
+                                <input type='radio' className='form-check-input' value={OPTION_ONE} name='question' onChange={this.handleChoice} id='optionOne'/>
+                                <label className='form-check-label' for='optionOne'>
+                                    {question.optionOne.text}
+                                </label>
+                            </div>
 
-                        <div className='radio'>
-                            <label>
-                                <input type='radio' value={OPTION_TWO} name='question' onChange={this.handleChoice}/>
-                                {question.optionTwo.text}
-                            </label>
-                        </div>
+                            <div className='form-check'>
+                                <input type='radio' className='form-check-input' value={OPTION_TWO} name='question' onChange={this.handleChoice} id='optionTwo'/>
+                                <label className='form-check-label' for='optionTwo'>
+                                    {question.optionTwo.text}
+                                </label>
+                            </div>
 
-                        <button className='btn'
-                                type='submit'
-                                disabled={choix === ''}>
-                            Submit
-                        </button>
-                    </form>
+                            <Button className='btn fit'
+                                    type='submit'
+                                    disabled={choix === ''}>
+                                Submit
+                            </Button>
+                        </form>
+                    </div>
 
-                </div>
-            </div>
+                </Card.Body>
+            </Card>
         )
     }
 }

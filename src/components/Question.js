@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom'
+import {Button, Card} from "react-bootstrap";
 
 class Question extends Component{
     render() {
@@ -11,24 +12,26 @@ class Question extends Component{
                 <h4>Loading question ... </h4>
             )
         }else {
-            const preview = question.optionOne.text.substring(0,question.optionOne.text.length/5)
+            const previewLen = Math.ceil(question.optionOne.text.length/5), preview = question.optionOne.text.substring(0, previewLen)
             const linkTo = (!question.optionTwo.votes.includes(authedUser) && !question.optionOne.votes.includes(authedUser)) ?  '/questions/'+question.id+'/answer' : '/questions/'+question.id
             return(
-                <div>
-                    <h4>{user.name } asks : </h4>
-                    <div>
+                <Card>
+                    <Card.Header>
+                        <Card.Title>{user.name } asks : </Card.Title>
+                    </Card.Header>
+                    <Card.Body className='question-content'>
                         <div>
-                            <img src={user.avatarURL} alt='Avatar'/>
+                            <Card.Img src={user.avatarURL} alt='Avatar'/>
                         </div>
                         <div>
                             <h5>Would you rather</h5>
                             <p>... {preview} ...</p>
                             <Link to={linkTo}>
-                                <button>View pull</button>
+                                <Button className='fit' variant='info'>View pull</Button>
                             </Link>
                         </div>
-                    </div>
-                </div>
+                    </Card.Body>
+                </Card>
             )
         }
     }

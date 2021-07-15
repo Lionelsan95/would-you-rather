@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import QuestionList from "./QuestionList";
+import {Card} from "react-bootstrap";
 
 class Dashboard extends Component{
 
@@ -24,20 +25,25 @@ class Dashboard extends Component{
             )
         }else{
 
+            const {showAnswered} = this.state
+
             const answerred = Object.values(questions).filter(question => (question.optionTwo.votes.includes(authedUser) || question.optionOne.votes.includes(authedUser)) ),
                   unAnswered = Object.values(questions).filter(question =>  (!question.optionTwo.votes.includes(authedUser) && !question.optionOne.votes.includes(authedUser)))
 
-            const questionLists = this.state.showAnswered ? answerred : unAnswered
+            const questionLists = showAnswered ? answerred : unAnswered
 
             return(
-                <div>
-                    <ul>
-                        <li onClick={this.toggleAnswer}>Unanswered Questions</li>
-                        <li onClick={this.toggleAnswer}>Answered Questions</li>
-                    </ul>
-
-                    <QuestionList questions={questionLists}/>
-                </div>
+                <Card className='contenu'>
+                    <div className='header_nav'>
+                        <ul className='option'>
+                            <li className={!showAnswered && 'option-li-active'} onClick={this.toggleAnswer}>Unanswered Questions</li>
+                            <li className={showAnswered && 'option-li-active'} onClick={this.toggleAnswer}>Answered Questions</li>
+                        </ul>
+                    </div>
+                    <Card.Body>
+                        <QuestionList questions={questionLists}/>
+                    </Card.Body>
+                </Card>
             )
         }
     }

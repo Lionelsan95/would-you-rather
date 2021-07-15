@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {TITLE} from "../utils/_DATA";
 import {handleAddQuestion} from "../actions/questions";
 import {Redirect} from "react-router-dom";
+import {Button, Card} from "react-bootstrap";
 
 class NewQuestion extends Component {
 
@@ -41,10 +42,6 @@ class NewQuestion extends Component {
 
     render() {
 
-        //Configure redirection
-
-        // console.log('authedUser', this.props.authedUser)
-
         const {optionOne, optionTwo, completed} = this.state
 
         if(completed === true || this.props.authedUser === null) {
@@ -52,34 +49,37 @@ class NewQuestion extends Component {
         }
 
         return (
-            <div>
-                <div className='__header'>
-                    <h3>Create New Question</h3>
-                </div>
-                <p>Complete the question:</p>
+            <Card className='contenu text-center'>
+                <Card.Header>
+                    <Card.Title>Create New Question</Card.Title>
+                </Card.Header>
 
-                <form className='__form' onSubmit={this.handleSubmit}>
-                    {TITLE}
+                <Card.Body>
+                    <Card.Text>Complete the question:</Card.Text>
 
-                    <br/>
-                    <label>
-                        <input onChange={this.handleOne} value={optionOne} placeholder='Enter Option One Text Here'/>
-                    </label>
-                    <br/>
+                    <Card.Title>
+                        {TITLE} ...
+                    </Card.Title>
+                    <form className='__form' onSubmit={this.handleSubmit}>
 
-                    <div className='hr-sect'>OR</div>
+                        <div className='form-group'>
+                            <input className='form-control' onChange={this.handleOne} value={optionOne} placeholder='Enter Option One Text Here'/>
+                        </div>
 
-                    <label>
-                        <input onChange={this.handleTwo} value={optionTwo} placeholder='Enter Option Two Text Here' />
-                    </label>
-                    <br/>
+                        <div className='hr-sect'>OR</div>
 
-                    <button className='btn'>
-                        Submit
-                    </button>
-                </form>
-
-            </div>
+                        <div className='form-group'>
+                            <input className='form-control' onChange={this.handleTwo} value={optionTwo} placeholder='Enter Option Two Text Here' />
+                        </div>
+                        <br/>
+                        <Button className='btn fit'
+                                type='submit'
+                                disabled={optionOne === '' || optionTwo === ''}>
+                            Submit
+                        </Button>
+                    </form>
+                </Card.Body>
+            </Card>
         )
     }
 }

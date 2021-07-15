@@ -1,9 +1,9 @@
 import React from "react";
+import {Card} from "react-bootstrap";
 
 const BoardItem = ({name, answered, created}) => {
     return (
-        <div className='box'>
-            <span>Rank</span>
+        <div className='leader-board'>
             <div className='__avatar'>
                 <img alt='Avatar'/>
             </div>
@@ -13,10 +13,10 @@ const BoardItem = ({name, answered, created}) => {
                 <hr/>
                 <div>Created questions <span>{created}</span></div>
             </div>
-            <div className='__score'>
-                <div>Score</div>
-                <div><span>{answered + created}</span></div>
-            </div>
+            <Card className='__score'>
+                <Card.Header>Score</Card.Header>
+                <Card.Body><span>{answered + created}</span></Card.Body>
+            </Card>
         </div>
     )
 }

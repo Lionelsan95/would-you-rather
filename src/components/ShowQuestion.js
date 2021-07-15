@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import Choice from "./Choice";
 import {Redirect} from "react-router-dom";
+import {Card} from "react-bootstrap";
 
 class ShowQuestion extends Component {
     render() {
@@ -26,27 +27,27 @@ class ShowQuestion extends Component {
         const choiceTwo = user.answers[question.id] === 'optionTwo' ? true:false;
 
         return (
-            <div>
-                <div className='__header'>
-                    <h5>Asked by {user.name}</h5>
-                </div>
+            <Card className='contenu'>
+                <Card.Header>
+                    <Card.Title>Asked by {user.name}</Card.Title>
+                </Card.Header>
 
-                <div className='__content'>
+                <Card.Body className='question-content'>
                     <div>
                         <img
                             alt='Avatar'
                         />
                     </div>
                     <div>
-                        <h4>Results : </h4>
+                        <Card.Title>Results : </Card.Title>
 
                         <Choice content={question.optionOne.text} nbVotes={nbOne} totalVotes={total} choosed={choiceOne}/>
 
                         <Choice content={question.optionTwo.text} nbVotes={nbTwo} totalVotes={total} choosed={choiceTwo}/>
 
                     </div>
-                </div>
-            </div>
+                </Card.Body>
+            </Card>
         );
     }
 }

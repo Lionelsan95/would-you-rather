@@ -26,6 +26,7 @@ class App extends Component{
                     <LoadingBar />
                     <div className='container'>
                         <Nav />
+                        <hr className='hr'/>
                         {
                             this.props.loading ?
                                 null :

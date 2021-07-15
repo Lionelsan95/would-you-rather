@@ -13,8 +13,83 @@ code {
     monospace;
 }
 
-.authentication{
-  border: 2px solid;
+/**
+Global code
+ */
+.text-center{
+  text-align: center;
+}
+
+.fit{
+  width: 100%;
+}
+
+.contenu{
+  width: 40rem;
+  margin: auto;
+}
+
+.text-bold{
+  font-weight: bold;
+}
+
+
+/** Style for navigation bar */
+.hr{
+  border: 2px solid aquamarine;
+}
+.nav{
+  width: 80%;
+  margin: auto;
+}
+.nav ul {
+  list-style-type: none;
+  margin: 0;
+}
+.nav ul li{
+  display: inline-block;
+  padding: 15px;
+}
+.nav-link:hover{
+  background-color: aquamarine;
+  cursor: pointer;
+}
+.nav ul li a{
+  color: gray;
+  text-decoration: none;
+}
+
+.infosUser a{
+  cursor: grab
+}
+
+.authentication__icon{
+  object-fit: scale-down;
+}
+
+/**
+* Style for Box
+ */
+.boxi{
+  border: 1px solid gray;
+  text-align: center;
+}
+
+.header{
+  text-align: center;
+  border-bottom: 2px solid #282c34;
+}
+
+/** Box border */
+/*.box{
+  border: px solid gainsboro;
+}*/
+
+.authentication .header{
+  background-color: aliceblue;
+  border-bottom: 2px solid silver;
+  text-align: center;
+  margin-top: 2px;
 }
 
 .hr-sect {
@@ -33,4 +108,84 @@ code {
   font-size: 0px;
   line-height: 0px;
   margin: 0px 8px;
+}
+
+/** Dashboard CSS */
+
+.option{
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.option li{
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.option-li-active{
+  color: aquamarine;
+  background-color: lightgrey;
+}
+.header_nav{
+  border-bottom: 1px solid lightgray;
+}
+
+/** Question */
+.question-content{
+  display: flex;
+}
+
+.question-content > div:first-child {
+  border-right: 2px solid gainsboro;
+  width: 30%;
+}
+
+.question-content > div:nth-child(2) {
+  padding: 0 15px 0 15px;
+  width: 70%;
+}
+
+.question-not-choosed{
+  padding: 10px;
+  border: 2px solid gray;
+}
+
+.question-choosed{
+  padding: 10px;
+  border: 2px solid red;
+  background-color: lawngreen;
+}
+
+.voted-label{
+  color: white;
+  padding: 10px;
+  background-color: red;
+  border-radius: 50px;
+}
+
+/** Leader Board */
+.leader-board{
+  display: flex;
+  border: 2px solid gray;
+  margin: 10px;
+}
+
+.leader-board div:first-child{
+  width: 25%;
+  border-right: 2px solid grey;
+}
+
+.leader-board div:nth-child(2){
+  width: 50%;
+  border-right: 2px solid grey;
+}
+
+.leader-board div:last-child{
+  width: 25%;
 }
