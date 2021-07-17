@@ -44,8 +44,16 @@ class NewQuestion extends Component {
 
         const {optionOne, optionTwo, completed} = this.state
 
-        if(completed === true || this.props.authedUser === null) {
+        if(completed === true){
             return <Redirect to='/' />
+        }
+
+        if(this.props.authedUser === null){
+            try{
+                this.props.history.push('/')
+            }catch (e) {
+                return <Redirect to='/' />
+            }
         }
 
         return (
@@ -72,7 +80,7 @@ class NewQuestion extends Component {
                             <input className='form-control' onChange={this.handleTwo} value={optionTwo} placeholder='Enter Option Two Text Here' />
                         </div>
                         <br/>
-                        <Button className='btn fit'
+                        <Button className='btn btn-info fit'
                                 type='submit'
                                 disabled={optionOne === '' || optionTwo === ''}>
                             Submit

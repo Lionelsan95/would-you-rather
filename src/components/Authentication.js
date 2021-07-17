@@ -2,13 +2,13 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {logInUser} from "../actions/authedUser";
 import {TITLE} from "../utils/_DATA";
-import icon from '../images/icon.png'
 import {Button, Card} from "react-bootstrap";
 
 class Authentication extends Component{
 
     state = {
-        user: ''
+        user: '',
+        authenticated: false
     }
 
     handleChange = (e) =>{
@@ -30,12 +30,14 @@ class Authentication extends Component{
         this.props.dispatch(logInUser(this.state.user))
         this.setState(() => ({
             users: '',
+            authenticated: true
         }))
     }
 
     render(){
         const {users} = this.props
         const {user} = this.state
+        let img = 'https://softstribe.com/app/uploads/icons/net-wouldyouratherapp-wouldyourather-icon.jpg'
 
         return (
             <Card border='secondary' className='boxi contenu'>
@@ -43,10 +45,9 @@ class Authentication extends Component{
                     <Card.Title> Welcome to the {TITLE} App! </Card.Title>
                     <Card.Text>Please sign in to continue</Card.Text>
                 </Card.Header>
-
                 <Card.Body>
-                    <Card.Img
-                        src={icon}
+                    <img
+                        src={img}
                         className='authentication__icon'
                         alt='Icon'
                     />

@@ -13,9 +13,7 @@ code {
     monospace;
 }
 
-/**
-Global code
- */
+/**Global code */
 .text-center{
   text-align: center;
 }
@@ -24,8 +22,12 @@ Global code
   width: 100%;
 }
 
+.flex-box{
+  display: flex;
+}
+
 .contenu{
-  width: 40rem;
+  width: 35rem;
   margin: auto;
 }
 
@@ -33,25 +35,44 @@ Global code
   font-weight: bold;
 }
 
+.img-centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+}
+.img-rounded{
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
 
 /** Style for navigation bar */
+
 .hr{
   border: 2px solid aquamarine;
 }
 .nav{
-  width: 80%;
+  width: 100%;
   margin: auto;
+  margin-top: 15px;
 }
+
 .nav ul {
   list-style-type: none;
   margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
+
 .nav ul li{
-  display: inline-block;
   padding: 15px;
+  box-sizing: content-box;
 }
 .nav-link:hover{
-  background-color: aquamarine;
+  background-color: lightseagreen;
   cursor: pointer;
 }
 .nav ul li a{
@@ -59,13 +80,27 @@ Global code
   text-decoration: none;
 }
 
-.infosUser a{
-  cursor: grab
+.avoid-new-line{
+  white-space: nowrap;
 }
+
+.user-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.active-nav{
+  background-color: lightseagreen;
+}
+
+/** Authentication component */
 
 .authentication__icon{
   object-fit: scale-down;
 }
+
+
 
 /**
 * Style for Box
@@ -136,56 +171,109 @@ Global code
   border-bottom: 1px solid lightgray;
 }
 
-/** Question */
-.question-content{
-  display: flex;
-}
-
-.question-content > div:first-child {
-  border-right: 2px solid gainsboro;
-  width: 30%;
-}
-
-.question-content > div:nth-child(2) {
-  padding: 0 15px 0 15px;
-  width: 70%;
-}
-
-.question-not-choosed{
-  padding: 10px;
-  border: 2px solid gray;
-}
-
-.question-choosed{
-  padding: 10px;
-  border: 2px solid red;
-  background-color: lawngreen;
-}
-
-.voted-label{
-  color: white;
-  padding: 10px;
-  background-color: red;
-  border-radius: 50px;
-}
-
 /** Leader Board */
 .leader-board{
+  position: relative;
   display: flex;
   border: 2px solid gray;
   margin: 10px;
+  padding: 15px 5px;
 }
 
-.leader-board div:first-child{
-  width: 25%;
-  border-right: 2px solid grey;
+.information{
+  flex-grow: 1;
+  border-right: 2px solid gainsboro;
+  border-left: 2px solid gainsboro;
+  padding: 10px;
+  margin : 0 5px;
 }
 
-.leader-board div:nth-child(2){
-  width: 50%;
-  border-right: 2px solid grey;
+.score{
+  width: 150px;
 }
 
-.leader-board div:last-child{
-  width: 25%;
+.score-text{
+  background-color: lightseagreen;
+  width: 70px;
+  height: 70px;
+}
+
+.item-rounded{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.triangle{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 60px 60px 0 0;
+  border-color: grey transparent transparent transparent;
+}
+
+.gold{
+  color: gold;
+}
+
+.silver{
+  color: silver;
+}
+
+.bronze{
+  color: #cd7f32;
+}
+
+/** Question answer */
+
+.result-box{
+  position: relative;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.img-box {
+  border-right : 2px solid lightgray;
+  margin-right: 10px;
+}
+
+.question-info{
+  flex-grow: 1;
+}
+
+.answer > div:first-child {
+  border-right: 2px solid gainsboro;
+}
+
+.answer-content{
+  margin-left: 15px;
+}
+
+.question-not-choosed{
+  border: 2px solid gray;
+  background-color: aliceblue;
+}
+
+.question-choosed{
+  border: 2px solid mediumseagreen;
+  background-color: lightseagreen;
+}
+
+.badge-text{
+  position: absolute;
+  top:-20px;
+  right: -20px;
+  background-color: gold;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  width: 40px;
+  height: 40px;
 }

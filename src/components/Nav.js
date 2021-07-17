@@ -3,7 +3,12 @@ import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 import {logOutUser} from "../actions/authedUser";
 
+
 class Nav extends React.Component {
+
+    state = {
+        connected: false
+    }
 
     handleLogOut = (e) => {
         e.preventDefault()
@@ -12,12 +17,11 @@ class Nav extends React.Component {
 
     render() {
         const {user} = this.props
-
         return (
             <nav className='nav'>
                 <ul>
-                    <li className='nav-link'>
-                        <NavLink to='/' exact activeClassName='active'>
+                    <li className='nav-link active-nav'>
+                        <NavLink to='/' exact >
                             Home
                         </NavLink>
                     </li>
@@ -33,18 +37,17 @@ class Nav extends React.Component {
                         </NavLink>
                     </li>
                     { (user !== null && typeof user !== 'undefined') &&
-                        <li>
-                            <NavLink to='/new' activeClassName='active'>
-                                Hello {user.name}
-                                <img
-                                    src={user.avatarURL}
-                                    alt='Avatar user'
-                                />
-                            </NavLink>
+                        <li className='img-centered avoid-new-line'>
+                            Hello, {user.name}
+                            <img
+                                src={`${user.avatarURL}`}
+                                alt='Avatar user'
+                                className='user-img'
+                            />
                         </li>
                     }
                     { (user !== null && typeof user !== 'undefined') && <li onClick={this.handleLogOut}  className='nav-link'>
-                        <NavLink to='/' activeClassName='active'>
+                        <NavLink to='/'>
                             Log out
                         </NavLink>
                     </li>

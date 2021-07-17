@@ -19,15 +19,15 @@ class Question extends Component{
                     <Card.Header>
                         <Card.Title>{user.name } asks : </Card.Title>
                     </Card.Header>
-                    <Card.Body className='question-content'>
-                        <div>
-                            <Card.Img src={user.avatarURL} alt='Avatar'/>
+                    <Card.Body className='flex-box'>
+                        <div className='img-centered img-box'>
+                            <img className='img-rounded' src={user.avatarURL} alt='Avatar'/>
                         </div>
-                        <div>
+                        <div className='question-info'>
                             <h5>Would you rather</h5>
                             <p>... {preview} ...</p>
                             <Link to={linkTo}>
-                                <Button className='fit' variant='info'>View pull</Button>
+                                <Button className='fit' variant='info'>View Poll</Button>
                             </Link>
                         </div>
                     </Card.Body>

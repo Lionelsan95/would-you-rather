@@ -36,8 +36,8 @@ class Dashboard extends Component{
                 <Card className='contenu'>
                     <div className='header_nav'>
                         <ul className='option'>
-                            <li className={!showAnswered && 'option-li-active'} onClick={this.toggleAnswer}>Unanswered Questions</li>
-                            <li className={showAnswered && 'option-li-active'} onClick={this.toggleAnswer}>Answered Questions</li>
+                            <li className={!showAnswered ? 'option-li-active' : ''} onClick={this.toggleAnswer}>Unanswered Questions</li>
+                            <li className={showAnswered ? 'option-li-active' : ''} onClick={this.toggleAnswer}>Answered Questions</li>
                         </ul>
                     </div>
                     <Card.Body>

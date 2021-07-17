@@ -4,7 +4,7 @@ import {Component, Fragment} from "react";
 import {handleInitialData} from "../actions/shared";
 import Dashboard from "./Dashboard";
 import Nav from "./Nav";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import AnswerQuestion from "./AnswerQuestion";
 import ShowQuestion from "./ShowQuestion";
 import NewQuestion from "./NewQuestion";
@@ -21,7 +21,7 @@ class App extends Component{
     render() {
         const {authedUser} = this.props
         return (
-            <Router className="App">
+            <Router className="App" forceUpdate={true}>
                 <Fragment>
                     <LoadingBar />
                     <div className='container'>
@@ -31,16 +31,19 @@ class App extends Component{
                             this.props.loading ?
                                 null :
                                 <div>
+                                    <Switch>
                                     {
                                        authedUser === null && <Route path='/' exact component={Authentication} />
                                     }
                                     {
                                         authedUser !== null && <Route path='/' exact component={Dashboard} />
                                     }
-                                    <Route path='/add' component={NewQuestion} />
-                                    <Route path='/questions/:question_id' exact component={ShowQuestion} />
-                                    <Route path='/questions/:question_id/answer' component={AnswerQuestion} />
-                                    <Route path='/leaderboard' component={LeaderBoard} />
+                                        <Route path='/add' component={NewQuestion} />
+                                        <Route path='/questions/:question_id' exact component={ShowQuestion} />
+                                        <Route path='/questions/:question_id/answer' component={AnswerQuestion} />
+                                        <Route path='/leaderboard' component={LeaderBoard} />
+                                        <Route path='/' component={() => <h5>Error 404, Page Not Found!</h5>}/>
+                                    </Switch>
                                 </div>
                         }
                     </div>
